@@ -2,7 +2,9 @@ html {
   box-sizing: border-box;
 }
 
-*, ::after, ::before {
+*,
+::after,
+::before {
   box-sizing: inherit;
 }
 
@@ -15,4 +17,6 @@ html {
   background-image: url(images/background.jpg);
   background-size: cover;
   background-position: center;
-};
+}
+
+;

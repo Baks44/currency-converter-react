@@ -4,7 +4,7 @@ import "./App.css";
 function App() {
   return (
     <div className="container">
-     <Form />
+      <Form />
       <footer className="footer">©2023 Bugs. All rights reserved ©</footer>
     </div>
   );

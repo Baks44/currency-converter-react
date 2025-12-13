@@ -1,7 +1,7 @@
 .form__labelText {
     width: 100%;
     max-width: 200px;
-    display: inline-block;  
+    display: inline-block;
 }
 
 .form__field {
@@ -10,8 +10,8 @@
     width: 100%;
     max-width: 350px;
     border-radius: 5px;
-   
-    
+
+
 }
 
 .form__button {
@@ -56,4 +56,3 @@
     text-align: center;
     color: darkgray;
 }
-
