@@ -43,7 +43,7 @@ See the app in action:
 ![Currency Conversion Demo](public/images/conversion-demo.gif)
 
 ## Project Structure
-
+```bash
 currency-converter-react/
 ├─ public/
 │  └─ images/           # screenshots and GIFs for README
