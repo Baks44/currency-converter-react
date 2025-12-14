@@ -45,18 +45,18 @@ See the app in action:
 ## Project Structure
 
 currency-converter-react/
-│
 ├─ public/
-│ └─ images/ # screenshots and GIFs for README
+│  └─ images/           # screenshots and GIFs for README
 ├─ src/
-│ ├─ components/ # reusable React components
-│ │ ├─ CurrencyInput.js
-│ │ ├─ CurrencySelector.js
-│ │ ├─ ConvertButton.js
-│ │ └─ ResultDisplay.js
-│ ├─ styles/ # CSS styles (BEM methodology)
-│ └─ App.js # main component
-├─ package.json
+│  ├─ components/       # reusable React components
+│  │  ├─ CurrencyInput.js
+│  │  ├─ CurrencySelector.js
+│  │  ├─ ConvertButton.js
+│  │  └─ ResultDisplay.js
+│  ├─ styles/           # CSS styles (BEM methodology)
+│  └─ App.js            # main component
+└─ package.json
+
 
 ## Installation
 Clone the repository and install dependencies:
