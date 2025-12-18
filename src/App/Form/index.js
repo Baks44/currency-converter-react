@@ -19,6 +19,7 @@ export const Form = ({ calculateResult, result }) => {
         <form className="form" onSubmit={onSubmit}>
 
 
+
             <h1 className="form__header">
                 Przelicznik walut
             </h1>
