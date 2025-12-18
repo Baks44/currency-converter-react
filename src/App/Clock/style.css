@@ -1,0 +1,12 @@
+.card {
+  position: relative;
+}
+
+.clock {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+
+  font-size: 14px;
+  color: #000000;
+}
