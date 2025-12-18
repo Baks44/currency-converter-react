@@ -1,4 +1,4 @@
-import Clock from "./Clock";
+import Clock from ".App./Clock";
 import Form from "./Form"
 import "./App.css";
 

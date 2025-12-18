@@ -15,7 +15,7 @@ function Clock() {
         <div className="clock">
             {time.toLocaleDateString("pl-PL", {
                 day: "numeric",
-                month: "long",
+                month: "numeric",
                 year: "numeric",
             })}
             {" | "}
