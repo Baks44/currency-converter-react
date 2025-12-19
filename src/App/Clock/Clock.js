@@ -1,22 +1,14 @@
-import { useEffect, useState } from "react";
+import useCurrentDate from "../useCurrentDate";
+import "./style.css";
 
-function Clock() {
-    const [time, setTime] = useState(new Date());
+const Clock = () => {
+  const date = useCurrentDate();
 
-    useEffect(() => {
-        const interval = setInterval(() => setTime(new Date()), 1000);
-        return () => clearInterval(interval);
-    }, []);
-
-    return (
-        <div className="clock">
-            {time.toLocaleDateString("pl-PL",
-                { day: "2-digit", month: "long", year: "numeric" })}
-            {" | "}
-            {time.toLocaleTimeString("pl-PL",
-                { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
-        </div>
-    );
-}
+  return (
+    <div className="clockContainer">
+      CLOCK JEST RENDEROWANY: {date.toLocaleTimeString()}
+    </div>
+  );
+};
 
 export default Clock;

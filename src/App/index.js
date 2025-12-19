@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import { Form } from './Form'
 import { currencies } from './currencies';
-
+import Clock from "./Clock/Clock";
 
 function App() {
 
@@ -25,6 +25,7 @@ function App() {
         result={result}
         calculateResult={calculateResult}
       />
+      <Clock />
     </div>
   );
 }
