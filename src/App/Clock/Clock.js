@@ -4,28 +4,19 @@ function Clock() {
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            setTime(new Date());
-        }, 1000);
-
-        return () => clearInterval(intervalId);
+        const interval = setInterval(() => setTime(new Date()), 1000);
+        return () => clearInterval(interval);
     }, []);
 
     return (
         <div className="clock">
-            {time.toLocaleDateString("pl-PL", {
-                day: "numeric",
-                month: "numeric",
-                year: "numeric",
-            })}
+            {time.toLocaleDateString("pl-PL",
+                { day: "2-digit", month: "long", year: "numeric" })}
             {" | "}
-            {time.toLocaleTimeString("pl-PL", {
-                hour: "2-digit",
-                minute: "2-digit",
-            })}
+            {time.toLocaleTimeString("pl-PL",
+                { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
         </div>
     );
 }
-
 
 export default Clock;
