@@ -6,3 +6,8 @@
     border-radius: 20px;
     box-shadow: 0 0 30px black;
 }
+
+.container {
+    position: relative;
+    padding: 20px;
+}
