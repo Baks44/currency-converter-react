@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './App.css';
-import { Form } from './Form'
+import Form from "./Form";
 import { currencies } from './currencies';
+import { AppContainer } from "./styled";
 
 function App() {
 
@@ -19,14 +19,9 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <div className="container">
-        <Form
-          result={result}
-          calculateResult={calculateResult}
-        />
-      </div>
-    </div>
+    <AppContainer>
+      <Form result={result} calculateResult={calculateResult} />
+    </AppContainer>
   );
 }
 export default App;

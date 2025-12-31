@@ -1,5 +1,6 @@
 import useCurrentDate from "../useCurrentDate";
-import "./style.css";
+import { ClockWrapper } from "./styled";
+
 
 const Clock = () => {
     const date = useCurrentDate();
@@ -9,11 +10,16 @@ const Clock = () => {
         year: 'numeric'
     };
 
+    const formattedTime
+        = date.toLocaleDateString(undefined, options)
+        + " " + date.toLocaleTimeString();
+
     return (
-        <div className="clock-container">
-            Dzisiaj jest {date.toLocaleDateString('pl-PL', options)} {date.toLocaleTimeString()}
-        </div>
+        <ClockWrapper>
+            Dzisiaj jest {formattedTime}
+        </ClockWrapper>
     );
+
 };
 
 export default Clock;

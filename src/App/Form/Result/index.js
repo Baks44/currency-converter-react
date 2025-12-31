@@ -1,18 +1,15 @@
-import "./style.css";
+import { StyledResult } from "./styled";
 
-export const Result = ({ result }) => (
-    <p className="result">
-        {result !== undefined && (
-            <>
-                {result.sourceAmount.toFixed(2)}&nbsp;PLN&nbsp;=
-                {" "}
+const Result = ({ result }) => {
+  if (!result) {
+    return null;
+  }
 
-                <strong>
-                    {result.targetAmount.toFixed(2)}&nbsp;{result.currency}
-                </strong>
-            </>
-        )}
-    </p>
-);
+  return (
+    <StyledResult>
+      {result.sourceAmount} PLN =&gt; {result.targetAmount.toFixed(2)} {result.currency}
+    </StyledResult>
+  );
+};
 
 export default Result;

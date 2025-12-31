@@ -1,10 +1,19 @@
 import { useState } from "react";
-import { currencies } from "../currencies";
-import { Result } from "./Result";
-import Clock from "../Clock/Clock"; 
-import "./style.css";
+import { currencies } from "../currencies.js";
+import Result from "./Result";
+import Clock from "../Clock/Clock";
 
-export const Form = ({ calculateResult, result }) => {
+import {
+    FormContainer,
+    StyledForm,
+    Legend,
+    Header,
+    LabelText,
+    Field,
+    Button
+} from "./styled";
+
+const Form = ({ calculateResult, result }) => {
     const [currency, setCurrency] = useState(currencies[0].short);
     const [amount, setAmount] = useState("");
 
@@ -12,62 +21,55 @@ export const Form = ({ calculateResult, result }) => {
         event.preventDefault();
         if (!amount) return;
         calculateResult(currency, Number(amount));
-    }
+    };
 
     return (
-        <div className="form-container"> 
-            <Clock />  
-            <form className="form" onSubmit={onSubmit}>
-                <h1 className="form__header">
-                    Przelicznik walut
-                </h1>
-                <p>
-                    <label>
-                        <span className="form__labelText">
-                            Kwota w zł*:
-                        </span>
-                        <input
-                            value={amount}
-                            onChange={({ target }) => setAmount(target.value)}
-                            placeholder="Wpisz kwotę w zł"
-                            className="form__field"
-                            type="number"
-                            required
-                            step="0.01"
-                        />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        <span className="form__labelText">
-                            Waluta:
-                        </span>
-                        <select
-                            className="form__field"
-                            value={currency}
-                            onChange={({ target }) => setCurrency(target.value)}
-                        >
-                            {currencies.map((currency) => (
-                                <option
-                                    key={currency.short}
-                                    value={currency.short}
-                                >
-                                    {currency.name}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                </p>
-                <p>
-                    <button className="form__button">Przelicz!</button>
-                </p>
+        <FormContainer>
+            <Clock />
+
+            <StyledForm onSubmit={onSubmit}>
+                <Header>Przelicznik walut</Header>
+
+                <Legend>
+                    <LabelText>Kwota w zł*:</LabelText>
+                    <Field
+                        value={amount}
+                        onChange={({ target }) => setAmount(target.value)}
+                        placeholder="Wpisz kwotę w zł"
+                        type="number"
+                        required
+                        step="0.01"
+                    />
+                </Legend>
+
+                <Legend>
+                    <LabelText>Waluta:</LabelText>
+                    <Field
+                        as="select"
+                        value={currency}
+                        onChange={({ target }) => setCurrency(target.value)}
+                    >
+                        {currencies.map(currency => (
+                            <option
+                                key={currency.short}
+                                value={currency.short}
+                            >
+                                {currency.name}
+                            </option>
+                        ))}
+                    </Field>
+                </Legend>
+
+                <Button>Przelicz!</Button>
+
                 <p className="form__info">
                     Kursy mogą się różnić w zależności od aktualnej stawki.
                 </p>
 
                 <Result result={result} />
-            </form>
-        </div>
+            </StyledForm>
+        </FormContainer>
     );
 };
 
+export default Form;
