@@ -28,6 +28,7 @@ A modern, responsive currency converter application built with **React**.
 - **CurrencySelector** – dropdown for currencies
 - **ConvertButton** – triggers conversion
 - **ResultDisplay** – shows conversion result
+- **StyledComponents** - This improves code organization
 
 ## Project Screenshots
 
