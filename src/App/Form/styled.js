@@ -16,7 +16,7 @@ export const Legend = styled.fieldset`
   width: 100%;
   margin: 10px 0;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     flex-direction: column;
     align-items: center;
     text-align: center;
