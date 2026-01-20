@@ -11,38 +11,40 @@ function App() {
   const calculateResult = (currency, amount) => {
     if (ratesData.state !== "success") return;
 
-    const rateObject = ratesData?.rates?.[currency];
-    console.log("FOUND RATE OBJECT:", rateObject);
+    const calculateResult = (currency, amount) => {
+      if (ratesData.state !== "success") return;
 
-    if (!rateObject) {
-      console.error("BRAK KURSU DLA:", currency);
-      return;
-    }
+      const rate = Number(ratesData.rates[currency]);
 
-    const rate = Number(rateObject.value);
-    console.log("RATE VALUE:", rate);
+      console.log("RATE:", rate, typeof rate);
+      console.log("AMOUNT:", amount, typeof amount);
 
-    setResult({
-      sourceAmount: Number(amount),
-      targetAmount: Number(amount) * rate,
-      currency,
-    });
-  };
+      if (isNaN(rate)) {
+        console.error("Nieprawidłowy kurs dla:", currency);
+        return;
+      }
 
-  return (
-    <AppContainer>
-      <GlobalStyle />
+      setResult({
+        sourceAmount: Number(amount),
+        targetAmount: Number(amount) * rate,
+        currency,
+      });
+    };
 
-      <InnerContainer>
-        <Form
-          result={result}
-          calculateResult={calculateResult}
-          ratesData={ratesData}
-        />
-        <footer>©2023 Bugs. All rights reserved</footer>
-      </InnerContainer>
-    </AppContainer>
-  );
-}
+    return (
+      <AppContainer>
+        <GlobalStyle />
 
-export default App;
+        <InnerContainer>
+          <Form
+            result={result}
+            calculateResult={calculateResult}
+            ratesData={ratesData}
+          />
+          <footer>©2023 Bugs. All rights reserved</footer>
+        </InnerContainer>
+      </AppContainer>
+    );
+  }
+
+  export default App;
