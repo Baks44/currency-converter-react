@@ -1,34 +1,48 @@
 import { useState } from "react";
-import "./App.css";
-import Form from "./Form/Result";
-import { currencies } from "./currencies";
-import { GlobalStyle } from "../GlobalStyle";
+import Form from "./Form";
+import { GlobalStyle } from "../GlobalStyles";
 import { AppContainer, InnerContainer } from "./styled";
-
+import { useRates } from "../useRates";
 
 function App() {
   const [result, setResult] = useState();
+  const ratesData = useRates();
 
   const calculateResult = (currency, amount) => {
-    const rate = currencies.find(({ short }) => short === currency).rate;
+    if (ratesData.state !== "success") return;
+
+    const rateObject = ratesData?.rates?.[currency];
+    console.log("FOUND RATE OBJECT:", rateObject);
+
+    if (!rateObject) {
+      console.error("BRAK KURSU DLA:", currency);
+      return;
+    }
+
+    const rate = Number(rateObject.value);
+    console.log("RATE VALUE:", rate);
+
     setResult({
-      sourceAmount: +amount,
-      targetAmount: amount / rate,
+      sourceAmount: Number(amount),
+      targetAmount: Number(amount) * rate,
       currency,
     });
   };
 
   return (
-    <>
+    <AppContainer>
       <GlobalStyle />
-      <AppContainer>
-        <InnerContainer>
-          <Form result={result} calculateResult={calculateResult} />
-          <footer>©2023 Bugs. All rights reserved</footer>
-        </InnerContainer>
-      </AppContainer>
-    </>
+
+      <InnerContainer>
+        <Form
+          result={result}
+          calculateResult={calculateResult}
+          ratesData={ratesData}
+        />
+        <footer>©2023 Bugs. All rights reserved</footer>
+      </InnerContainer>
+    </AppContainer>
   );
 }
 
-      export default App;
+export default App;

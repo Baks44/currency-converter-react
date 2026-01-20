@@ -50,3 +50,25 @@ export const Button = styled.button`
   padding: 10px;
   border-radius: 5px;
 `;
+
+export const FormInfo = styled.p`
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #555;
+`;
+
+export const ApiInfo = styled.p`
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
+export const ApiLoading = styled(ApiInfo)`
+  color: teal;
+`;
+
+export const ApiError = styled(ApiInfo)`
+  color: crimson;
+  font-weight: bold;
+`;

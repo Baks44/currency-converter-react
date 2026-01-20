@@ -1,28 +1,32 @@
-import { useState } from 'react';
+import { useState } from "react";
 import Form from "./Form";
-import { currencies } from './currencies';
 import { AppContainer } from "./styled";
+import { useRates } from "../useRates";
 
 function App() {
-
   const [result, setResult] = useState();
-
+  const ratesData = useRates(); 
   const calculateResult = (currency, amount) => {
-    const rate = currencies
-      .find(({ short }) => short === currency)
-      .rate;
+    if (ratesData.state !== "success") return;
+
+    const rate = ratesData.rates[currency];
+
     setResult({
-      sourceAmount: + amount,
-      targetAmount: amount / rate,
+      sourceAmount: +amount,
+      targetAmount: amount * rate,
       currency,
     });
-  }
+  };
 
   return (
     <AppContainer>
-      <Form result={result} calculateResult={calculateResult} />
+      <Form
+        result={result}
+        calculateResult={calculateResult}
+        ratesData={ratesData}
+      />
     </AppContainer>
   );
 }
-export default App;
 
+export default App;

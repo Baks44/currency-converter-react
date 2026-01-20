@@ -1,7 +1,6 @@
 import useCurrentDate from "../useCurrentDate";
 import { ClockWrapper } from "./styled";
 
-
 const Clock = () => {
     const date = useCurrentDate();
     const options = {
