@@ -58,28 +58,25 @@ const Form = ({ calculateResult, result, ratesData }) => {
                             <Field
                                 as="select"
                                 value={currency}
-                                onChange={({ target }) => {
-                                    console.log("SELECTED CURRENCY:", target.value);
-                                    setCurrency(target.value);
-                                }}
+                                onChange={({ target }) => setCurrency(target.value)}
                             >
-                            {Object.keys(ratesData.rates).map(code => (
-                                <option key={code} value={code}>
-                                    {code}
-                                </option>
-                            ))}
-                        </Field>
+                                {ratesData.rates.map(rate => (
+                                    <option key={rate.code} value={rate.code}>
+                                        {rate.code}
+                                    </option>
+                                ))}
+                            </Field>
 
 
-                    </Legend>
-                <Button>Przelicz!</Button>
-                <FormInfo>
-                    Kursy pochodzą z Narodowego Banku Polskiego.
-                </FormInfo>
-                <Result result={result} />
-            </>
+                        </Legend>
+                        <Button>Przelicz!</Button>
+                        <FormInfo>
+                            Kursy pochodzą z Narodowego Banku Polskiego.
+                        </FormInfo>
+                        <Result result={result} />
+                    </>
                 )}
-        </StyledForm>
+            </StyledForm>
         </FormContainer >
     );
 };

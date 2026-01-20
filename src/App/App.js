@@ -8,26 +8,24 @@ function App() {
   const [result, setResult] = useState();
   const ratesData = useRates();
 
-  const calculateResult = (currency, amount) => {
-    if (ratesData.state !== "success") return;
-
     const calculateResult = (currency, amount) => {
-      if (ratesData.state !== "success") return;
+  if (ratesData.state !== "success") return;
 
-      const rate = Number(ratesData.rates[currency]);
+  const rateObject = ratesData.rates.find(
+    rate => rate.code === currency
+  );
 
-      console.log("RATE:", rate, typeof rate);
-      console.log("AMOUNT:", amount, typeof amount);
+  if (!rateObject) {
+    console.error("Nie prawidłowy kurs dla:", currency);
+    return;
+  }
 
-      if (isNaN(rate)) {
-        console.error("Nieprawidłowy kurs dla:", currency);
-        return;
-      }
+  const rate = Number(rateObject.mid);
 
-      setResult({
-        sourceAmount: Number(amount),
-        targetAmount: Number(amount) * rate,
-        currency,
+  setResult({
+    sourceAmount: amount,
+    targetAmount: amount * rate,
+    currency,
       });
     };
 
@@ -45,6 +43,6 @@ function App() {
         </InnerContainer>
       </AppContainer>
     );
-  }
+  };
 
   export default App;
