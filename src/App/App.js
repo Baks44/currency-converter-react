@@ -8,41 +8,47 @@ function App() {
   const [result, setResult] = useState();
   const ratesData = useRates();
 
-    const calculateResult = (currency, amount) => {
-  if (ratesData.state !== "success") return;
+  const calculateResult = (currency, amount) => {
+    if (ratesData.state !== "success") return;
 
-  const rateObject = ratesData.rates.find(
-    rate => rate.code === currency
-  );
+    const numericAmount = parseFloat(amount);
+    const rate = ratesData.rates[currency]?.value;
 
-  if (!rateObject) {
-    console.error("Nie prawidłowy kurs dla:", currency);
-    return;
-  }
+    console.log("DEBUG:", {
+      currency,
+      numericAmount,
+      rate,
+      rateType: typeof rate,
+    });
 
-  const rate = Number(rateObject.mid);
+    if (isNaN(numericAmount) || typeof rate !== "number") {
+      console.error("BŁĘDNE DANE", { numericAmount, rate });
+      setResult(null);
+      return;
+    }
 
-  setResult({
-    sourceAmount: amount,
-    targetAmount: amount * rate,
-    currency,
-      });
-    };
-
-    return (
-      <AppContainer>
-        <GlobalStyle />
-
-        <InnerContainer>
-          <Form
-            result={result}
-            calculateResult={calculateResult}
-            ratesData={ratesData}
-          />
-          <footer>©2023 Bugs. All rights reserved</footer>
-        </InnerContainer>
-      </AppContainer>
-    );
+    setResult({
+      sourceAmount: numericAmount,
+      targetAmount: numericAmount * rate,
+      currency,
+    });
   };
 
-  export default App;
+
+  return (
+    <AppContainer>
+      <GlobalStyle />
+
+      <InnerContainer>
+        <Form
+          result={result}
+          calculateResult={calculateResult}
+          ratesData={ratesData}
+        />
+        <footer>©2023 Bugs. All rights reserved</footer>
+      </InnerContainer>
+    </AppContainer>
+  );
+};
+
+export default App;

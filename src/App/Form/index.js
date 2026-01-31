@@ -21,7 +21,8 @@ const Form = ({ calculateResult, result, ratesData }) => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        calculateResult(currency, Number(amount));
+        calculateResult(currency, amount);
+
     };
 
     return (
@@ -60,9 +61,9 @@ const Form = ({ calculateResult, result, ratesData }) => {
                                 value={currency}
                                 onChange={({ target }) => setCurrency(target.value)}
                             >
-                                {ratesData.rates.map(rate => (
-                                    <option key={rate.code} value={rate.code}>
-                                        {rate.code}
+                                {ratesData.rates && Object.keys(ratesData.rates).map(code => (
+                                    <option key={code} value={code}>
+                                        {code}
                                     </option>
                                 ))}
                             </Field>
@@ -71,7 +72,7 @@ const Form = ({ calculateResult, result, ratesData }) => {
                         </Legend>
                         <Button>Przelicz!</Button>
                         <FormInfo>
-                            Kursy pochodzą z Narodowego Banku Polskiego.
+                            Kursy pochodzą z currencyapi.com.
                         </FormInfo>
                         <Result result={result} />
                     </>
