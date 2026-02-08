@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import background from "./images/background.jpg";
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
   }
