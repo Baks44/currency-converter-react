@@ -21,7 +21,7 @@ const Form = ({ calculateResult, result, ratesData }) => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        calculateResult(currency, amount);
+        calculateResult(currency, parseFloat(amount));
 
     };
 
@@ -47,7 +47,7 @@ const Form = ({ calculateResult, result, ratesData }) => {
 
                             <Field
                                 value={amount}
-                                onChange={({ target }) => setAmount(target.value)}
+                                onChange={({ target }) => setAmount(target.value.replace(",", "."))}
                                 placeholder="Wpisz kwotę w zł"
                                 type="number"
                                 required
@@ -61,11 +61,14 @@ const Form = ({ calculateResult, result, ratesData }) => {
                                 value={currency}
                                 onChange={({ target }) => setCurrency(target.value)}
                             >
-                                {ratesData.rates && Object.keys(ratesData.rates).map(code => (
-                                    <option key={code} value={code}>
-                                        {code}
-                                    </option>
-                                ))}
+                                {ratesData.rates &&
+                                    Object.keys(ratesData.rates)
+                                        .filter(code => code !== "PLN")
+                                        .map(code => (
+                                            <option key={code} value={code}>
+                                                {code}
+                                            </option>
+                                        ))}
                             </Field>
 
 
