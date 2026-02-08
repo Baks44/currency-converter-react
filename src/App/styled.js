@@ -15,3 +15,12 @@ export const InnerContainer = styled.div`
   position: relative;
   padding: 20px;
 `;
+
+export const Footer = styled.footer`
+  position: fixed;
+  left: 24px;
+  bottom: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.7);
+`;

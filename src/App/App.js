@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Form from "./Form";
 import { GlobalStyle } from "../GlobalStyles";
-import { AppContainer, InnerContainer } from "./styled";
+import { AppContainer, InnerContainer, Footer} from "./styled";
 import { useRates } from "../useRates";
 
 function App() {
@@ -18,11 +18,15 @@ function App() {
       currency,
       numericAmount,
       rate,
-      rateType: typeof rate,
     });
 
     if (isNaN(numericAmount) || typeof rate !== "number") {
       console.error("BŁĘDNE DANE", { numericAmount, rate });
+      setResult(null);
+      return;
+    }
+
+    if (!Number.isFinite(numericAmount) || !Number.isFinite(rate)) {
       setResult(null);
       return;
     }
@@ -50,8 +54,8 @@ function App() {
           calculateResult={calculateResult}
           ratesData={ratesData}
         />
-        <footer>©2023 Bugs. All rights reserved</footer>
       </InnerContainer>
+      <Footer>©2026 Bugs. All rights reserved</Footer>
     </AppContainer>
   );
 };
