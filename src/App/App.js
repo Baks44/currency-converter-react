@@ -5,7 +5,7 @@ import { AppContainer, InnerContainer, Footer} from "./styled";
 import { useRates } from "../useRates";
 
 function App() {
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(null);
   const ratesData = useRates();
 
   const calculateResult = (currency, amount) => {
@@ -42,7 +42,6 @@ function App() {
       currency,
     });
   };
-
 
   return (
     <AppContainer>
