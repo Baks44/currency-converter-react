@@ -27,6 +27,11 @@ function App() {
       return;
     }
 
+    if (typeof rate !== "number") {
+      setResult(null);
+      return;
+    }
+
     setResult({
       sourceAmount: numericAmount,
       targetAmount: numericAmount * rate,
