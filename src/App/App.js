@@ -1,7 +1,7 @@
 import { GlobalStyle } from '../GlobalStyles';
 import { AppContainer, InnerContainer, Footer } from './styled';
 import { useRates } from '../useRates';
-import Form from '../Form';
+import Form from './Form';
 
 function App() {
   const ratesData = useRates();

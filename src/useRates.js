@@ -17,7 +17,7 @@ export function useRates() {
         const data = await response.json();
 
         setRatesData({
-          await: new Promise((resolve) => setTimeout(resolve, 1000)),
+          await: new Promise((resolve) => setTimeout(resolve, 2000)),
           state: 'success',
           rates: data.data
         });
